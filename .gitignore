@@ -3,3 +3,6 @@
 
 #Node Modules
 /node_modules
+
+#Heroku Vendor
+/vendor
