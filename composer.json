@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php": "^5.6.0"
+    },
+    "require":{
+        "ext-mysqli": "*"
+    },
+    "require":{
+        "ext-gettext": "*"
+    },
+    "require-dev":{
+        "heroku/heroku-buildpack-php": "*"
+    }
+}

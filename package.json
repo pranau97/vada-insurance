@@ -1,0 +1,25 @@
+{
+  "name": "iwp-project",
+  "version": "0.3.0",
+  "description": "Internet and Web Programming Project - Insurance Management System",
+  "main": "main.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pranau Kumar",
+  "license": "ISC",
+  "keywords": [
+    "IWP",
+    "PHP",
+    "HTML",
+    "CSS",
+    "JS",
+    "MySQL"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^3.8.1"
+  }
+}
