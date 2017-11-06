@@ -10,15 +10,15 @@ $vehiclemanufac = $_POST['vehiclemanufac'];
 $yob = $_POST['yob'];
 $costofvehicle = $_POST['costofvehicle'];
 
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
-$query = mysql_query("SELECT * FROM aut_insurance WHERE CUSTOMER_ID=$customerid");
-$query1 = mysql_query("SELECT * FROM customer_license WHERE CUSTOMER_LICENSE_NUMBER!=$licnum");
-$query2 = mysql_query("SELECT * FROM aut_insurance");
+$query = mysqli_query($con, "SELECT * FROM aut_insurance WHERE CUSTOMER_ID=$customerid");
+$query1 = mysqli_query($con, "SELECT * FROM customer_license WHERE CUSTOMER_LICENSE_NUMBER!=$licnum");
+$query2 = mysqli_query($con, "SELECT * FROM aut_insurance");
 $f=0;
 
-while($row=mysql_fetch_assoc($query))
+while($row=mysqli_fetch_assoc($query))
 {
 	
 	$check=$row['POLICY_ID'];
@@ -29,7 +29,7 @@ while($row=mysql_fetch_assoc($query))
 		$f=1;
 	}
 }
-while($row1=mysql_fetch_assoc($query1))
+while($row1=mysqli_fetch_assoc($query1))
 {
 	
 	$check=$row1['CUSTOMER_LICENSE_NUMBER'];
@@ -39,7 +39,7 @@ while($row1=mysql_fetch_assoc($query1))
 		$f=1;
 	}
 }
-while($row2=mysql_fetch_assoc($query2))
+while($row2=mysqli_fetch_assoc($query2))
 {
 	
 	$check=$row2['REG_NUMBER'];
@@ -53,16 +53,16 @@ while($row2=mysql_fetch_assoc($query2))
 if ($customerid && $autid && $autdate && $licnum && $regnum && $vehiclemanufac && $yob && $costofvehicle && $f==0) 
 {
 
-	mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
 	
-	mysql_query("INSERT INTO aut_insurance(customer_id,policy_id,reg_number,vehicle_manufac,year_of_built,policy_date,cost_of_vehicle) VALUES('$customerid','$autid','$regnum','$vehiclemanufac',$yob,'$autdate',$costofvehicle)");
-	mysql_query("INSERT INTO customer_license(customer_id,customer_license_number) VALUES('$customerid','$licnum')");
+	mysqli_query($con, "INSERT INTO aut_insurance(customer_id,policy_id,reg_number,vehicle_manufac,year_of_built,policy_date,cost_of_vehicle) VALUES('$customerid','$autid','$regnum','$vehiclemanufac',$yob,'$autdate',$costofvehicle)");
+	mysqli_query($con, "INSERT INTO customer_license(customer_id,customer_license_number) VALUES('$customerid','$licnum')");
 	echo "You have succefully registered!<p><p><h3>Congratulations..</h3>";
 	echo "<br />";
 	echo "<h2>Do you want to register for any other policies......<br /> Click on below links</h2>";
 	
-	mysql_close();
+	mysqli_close($con);
 	include("cust_reg_link.php");
 	
 

@@ -93,9 +93,9 @@ height: 100px;
 
 
 <table>
-<tr><td>Name: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT FIRST_NAME FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['FIRST_NAME'];
+<tr><td>Name: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT FIRST_NAME FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['FIRST_NAME'];
 
 	?></td>
 	<td rowspan="5"> <div id="photo"><?php $open = opendir($dir);
@@ -108,43 +108,43 @@ height: 100px;
 	}
 	?></div></tr>
 <tr><td>Employee ID: </td><td><?php echo $temp_eid; ?></td></tr>
-<tr><td>Sex: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT SEX FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['SEX'];
+<tr><td>Sex: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT SEX FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['SEX'];
 
 	?></td></tr>
-<tr><td>DOB: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT DOB FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['DOB'];
+<tr><td>DOB: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT DOB FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['DOB'];
 
 	?></td></tr>
-<tr><td>Phone: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT PHONE_NUMBER FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['PHONE_NUMBER'];
+<tr><td>Phone: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT PHONE_NUMBER FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['PHONE_NUMBER'];
 
 	?></td></tr>
 </table>
 
 <h5><strong><u>Address</u></strong></h5>
 <table>
-<tr><td>House number: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT HOUSE_NUMBER FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['HOUSE_NUMBER'];
+<tr><td>House number: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT HOUSE_NUMBER FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['HOUSE_NUMBER'];
 
 	?></td></tr>
-<tr><td>Street: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT STREET FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['STREET'];
+<tr><td>Street: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT STREET FROM employee WHERE EMPLOYEE_ID=$temp_eid "))['STREET'];
 
 	?></td></tr>
-<tr><td>City: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT CITY FROM pin_city WHERE PINCODE=$temp_pin "))['CITY'];
+<tr><td>City: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT CITY FROM pin_city WHERE PINCODE=$temp_pin "))['CITY'];
 
 	?></td></tr>
-<tr><td>State: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT STATE FROM pin_state WHERE PINCODE=$temp_pin "))['STATE'];
+<tr><td>State: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT STATE FROM pin_state WHERE PINCODE=$temp_pin "))['STATE'];
 
 	?></td></tr>
 <tr><td>PIN code: </td><td><?php echo $temp_pin; ?></td></tr>
@@ -154,37 +154,37 @@ height: 100px;
 <div id="right">
 <h4><strong><u>Official Details</u></strong></h4>
 <table>
-<tr><td>Branch ID: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid) "))['BRANCH_ID'];
+<tr><td>Branch ID: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid) "))['BRANCH_ID'];
 	
 	?></td></tr>
-<tr><td>Department Name: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid"))['D_ID'];
+<tr><td>Department Name: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid"))['D_ID'];
 	
 	?></td></tr>
-<tr><td>Designation: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT DESIGNATION FROM emp_designation WHERE EMPLOYEE_ID=$temp_eid "))['DESIGNATION'];
+<tr><td>Designation: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT DESIGNATION FROM emp_designation WHERE EMPLOYEE_ID=$temp_eid "))['DESIGNATION'];
 
 	?></td></tr>
 </table>
 <h5><strong><u>Salary Details</u></strong></h5>
 <table>
-<tr><td>Salary: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT SALARY FROM emp_salary WHERE EMPLOYEE_ID=$temp_eid "))['SALARY'];
+<tr><td>Salary: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT SALARY FROM emp_salary WHERE EMPLOYEE_ID=$temp_eid "))['SALARY'];
 
 	?></td></tr>
-<tr><td>Account number: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT ACCOUNT_NUMBER FROM emp_account WHERE EMPLOYEE_ID=$temp_eid "))['ACCOUNT_NUMBER'];
+<tr><td>Account number: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT ACCOUNT_NUMBER FROM emp_account WHERE EMPLOYEE_ID=$temp_eid "))['ACCOUNT_NUMBER'];
 
 	?></td></tr>
-<tr><td>Bank Name: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT BANK_NAME FROM bank_details WHERE ACCOUNT_NUMBER=(SELECT ACCOUNT_NUMBER FROM emp_account WHERE EMPLOYEE_ID=$temp_eid)"))['BANK_NAME'];
+<tr><td>Bank Name: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT BANK_NAME FROM bank_details WHERE ACCOUNT_NUMBER=(SELECT ACCOUNT_NUMBER FROM emp_account WHERE EMPLOYEE_ID=$temp_eid)"))['BANK_NAME'];
 
 	?></td></tr>
 </table>

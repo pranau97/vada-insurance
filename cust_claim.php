@@ -67,21 +67,21 @@ margin-top:300px;
 <p>
 
 <?php   //include("clone_cust_session.php");
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
 echo "<table width=\"50%\" align=center border=2>";
 echo "<tr><th width=\"20%\" align= center \">CUSTOMER ID</th>
 <th width=\"30%\" align= center \">POLICY ID</th>
 <th width=\"15%\" align= center \">CLAIM</th></tr>";
 
-$query = mysql_query("SELECT * FROM lyf_insurance");
-$query1 = mysql_query("SELECT * FROM aut_insurance");
-$query2 = mysql_query("SELECT * FROM prop_insurance");
+$query = mysqli_query($con, "SELECT * FROM lyf_insurance");
+$query1 = mysqli_query($con, "SELECT * FROM aut_insurance");
+$query2 = mysqli_query($con, "SELECT * FROM prop_insurance");
 
 
 
-while($row=mysql_fetch_assoc($query))
+while($row=mysqli_fetch_assoc($query))
 {
 	$lid=$row['POLICY_ID'];
 	$cid=$row['CUSTOMER_ID'];
@@ -92,7 +92,7 @@ $cid</td><td align=center >$lid</td><td align=center ><a href='claim_lyf_process
 
 }
 
-while($row1=mysql_fetch_assoc($query1))
+while($row1=mysqli_fetch_assoc($query1))
 {
 	$aid=$row1['POLICY_ID'];
 	$acid=$row1['CUSTOMER_ID'];
@@ -102,7 +102,7 @@ $acid</td><td align=center >$aid</td><td align=center ><a href='claim_auto_proce
 
 }
 
-while($row2=mysql_fetch_assoc($query2))
+while($row2=mysqli_fetch_assoc($query2))
 {
 	$pid=$row2['POLICY_ID'];
 	$pcid=$row2['CUSTOMER_ID'];

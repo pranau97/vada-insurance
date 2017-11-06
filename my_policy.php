@@ -97,46 +97,46 @@ width:33.33%;
 
 
 <?php   include("clone_cust_session.php");
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
 echo "<table width=\"20%\" align=center border=2>";
 echo "<tr><td width=\"20%\" align= center \">POLICY ID</td>
 <td width=\"20%\" align= center \">POLICY NAME</td>";
 
-$query1 = mysql_query("SELECT * FROM lyf_insurance WHERE CUSTOMER_ID=$temp_cid");
-$query2 = mysql_query("SELECT * FROM aut_insurance WHERE CUSTOMER_ID=$temp_cid");
-$query3 = mysql_query("SELECT * FROM prop_insurance WHERE CUSTOMER_ID=$temp_cid");
+$query1 = mysqli_query($con, "SELECT * FROM lyf_insurance WHERE CUSTOMER_ID=$temp_cid");
+$query2 = mysqli_query($con, "SELECT * FROM aut_insurance WHERE CUSTOMER_ID=$temp_cid");
+$query3 = mysqli_query($con, "SELECT * FROM prop_insurance WHERE CUSTOMER_ID=$temp_cid");
 
 
-while($row1=mysql_fetch_assoc($query1))
+while($row1=mysqli_fetch_assoc($query1))
 {
 	$id=$row1['POLICY_ID'];
-	$query1_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+	$query1_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>
 	<a href='view_policy.php?ids=$id&query1_1s=$query1_1'>$id</a></td><td>$query1_1</td></tr>";
 	//$name=$row['POLICY_NAME'];
 }
-while($row2=mysql_fetch_assoc($query2))
+while($row2=mysqli_fetch_assoc($query2))
 {
 	$id=$row2['POLICY_ID'];
-		$query2_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+		$query2_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>
 	<a href='view_policy.php?ids=$id&query2_1s=$query2_1'>$id</a></td><td>$query2_1</td></tr>";
 	
 }
-while($row3=mysql_fetch_assoc($query3))
+while($row3=mysqli_fetch_assoc($query3))
 {
 	$id=$row3['POLICY_ID'];
-		$query3_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+		$query3_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 		
 		echo "<tr><td align=center>
 		<a href='view_policy_prop.php?ids=$id&query3_1s=$query3_1'>$id</a></td><td>$query3_1</td></tr>";
 	
 }
-/*while($row=mysql_fetch_assoc($query))
+/*while($row=mysqli_fetch_assoc($query))
 {
 	$id=$row['POLICY_ID'];
 	
@@ -154,39 +154,39 @@ echo "<tr><td align=center>
 <table>
 
 <?php  
-	mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
 
 echo "<table width=\"40%\" align=center border=2>";
 echo "<tr><td width=\"20%\" align= center \">POLICY ID</td>
 <td width=\"20%\" align= center \">POLICY NAME</td>";
 
-$query4 = mysql_query("SELECT * FROM claim_policy_id_lyf WHERE CUSTOMER_ID=$temp_cid");
-$query5 = mysql_query("SELECT * FROM claim_policy_id WHERE CUSTOMER_ID=$temp_cid");
-//$query6 = mysql_query("SELECT * FROM claim_policy_id WHERE CUSTOMER_ID=$temp_cid");
+$query4 = mysqli_query($con, "SELECT * FROM claim_policy_id_lyf WHERE CUSTOMER_ID=$temp_cid");
+$query5 = mysqli_query($con, "SELECT * FROM claim_policy_id WHERE CUSTOMER_ID=$temp_cid");
+//$query6 = mysqli_query($con, "SELECT * FROM claim_policy_id WHERE CUSTOMER_ID=$temp_cid");
 
-while($row4=mysql_fetch_assoc($query4))
+while($row4=mysqli_fetch_assoc($query4))
 {
 	$id=$row4['POLICY_ID_LYF'];
-	$query4_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+	$query4_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>
 	<a href='view_claim.php?ids=$id&query4_1s=$query4_1'>$id</a></td><td>$query4_1</td></tr>";
 	//$name=$row['POLICY_NAME'];
 }
-while($row5=mysql_fetch_assoc($query5))
+while($row5=mysqli_fetch_assoc($query5))
 {
 	$id=$row5['POLICY_ID'];
-	$query5_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+	$query5_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>
 	<a href='view_claim_auto_prop.php?ids=$id&query5_1s=$query5_1'>$id</a></td><td>$query5_1</td></tr>";
 	//$name=$row['POLICY_NAME'];
 }
-/*while($row6=mysql_fetch_assoc($query6))
+/*while($row6=mysqli_fetch_assoc($query6))
 {
 	$id=$row6['POLICY_ID'];
-	$query6_1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+	$query6_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>
 	<a href='view_policy.php?ids=$id'>$id</a></td><td>$query6_1</td></tr>";

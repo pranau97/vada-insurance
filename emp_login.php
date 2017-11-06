@@ -8,15 +8,15 @@ $_SESSION['password'] =md5($_POST['password']);
 
 if($_SESSION['eid'] && $_SESSION['password'])
 {
-	mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
 	
-	$query = mysql_query("SELECT * FROM employee WHERE employee_id='".$_SESSION['eid']."'");
-	$numrows = mysql_num_rows($query);
+	$query = mysqli_query($con, "SELECT * FROM employee WHERE employee_id='".$_SESSION['eid']."'");
+	$numrows = mysqli_num_rows($query);
 	
 	if($numrows != 0)
 	{
-		while($row = mysql_fetch_assoc($query))
+		while($row = mysqli_fetch_assoc($query))
 		{
 			$dbeid = $row['EMPLOYEE_ID'];
 			$dbpassword = $row['PASSWORD'];

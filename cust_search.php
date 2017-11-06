@@ -41,17 +41,17 @@ if(isset($_REQUEST['submit'])) {
 		}
 	}
 	
-	mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
 	
-	$query = mysql_query($query);
-	$num = mysql_num_rows($query);
+	$query = mysqli_query($con, $query);
+	$num = mysqli_num_rows($query);
 	
 	if($num > 0 && $search!=""){
 	
 		echo "$num result(s) found for <b>$search</b>!";
 	
-		while($row = mysql_fetch_assoc($query)){
+		while($row = mysqli_fetch_assoc($query)){
 		
 			$cid = $row['CUSTOMER_ID'];
 			$name = $row['FIRST_NAME'];
@@ -85,7 +85,7 @@ if(isset($_REQUEST['submit'])) {
 	
 	}
 
-	mysql_close();
+	mysqli_close($con);
 
 } else {
 

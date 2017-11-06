@@ -254,19 +254,19 @@ echo $date;
 
 <div id="header">
 <table id="1">
-<tr><td> Designation: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT DESIGNATION FROM emp_designation WHERE EMPLOYEE_ID=$temp_eid "))['DESIGNATION'];
+<tr><td> Designation: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT DESIGNATION FROM emp_designation WHERE EMPLOYEE_ID=$temp_eid "))['DESIGNATION'];
 
 	?></td></tr>
-<tr><td> Branch:</td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid) "))['BRANCH_ID'];
+<tr><td> Branch:</td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid) "))['BRANCH_ID'];
 	
 	?></td></tr>
-<tr><td> Department:</td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid"))['D_ID'];
+<tr><td> Department:</td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid"))['D_ID'];
 	
 	?></td></tr>
 </table>

@@ -60,17 +60,29 @@ include("cust_search1.php");
 include("cust_reg_link.php");
 echo "<h3> Choose an ID to edit: </h3><p>";
 
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+function mysqli_result($res,$row=0,$col=0){ 
+    $numrows = mysqli_num_rows($res); 
+    if ($numrows && $row <= ($numrows-1) && $row >=0){
+        mysqli_data_seek($res,$row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col])){
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
 $per_page = 6;
 
-$pages_query = mysql_query("SELECT COUNT('CUSTOMER_ID') FROM customer");
-$pages = ceil(mysql_result($pages_query, 0) / $per_page);
+$pages_query = mysqli_query($con, "SELECT COUNT('CUSTOMER_ID') FROM customer");
+$pages = ceil(mysqli_result($pages_query, 0) / $per_page);
  
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $per_page;
-$query = mysql_query("SELECT * FROM customer LIMIT $start, $per_page");
+$query = mysqli_query($con, "SELECT * FROM customer LIMIT $start, $per_page");
 
 
 
@@ -86,7 +98,7 @@ echo "<tr><td width=\"20%\" align= center bgcolor=\"FFFF00\">ID</td>
 <td width=\"50%\" align= center bgcolor=\"FFFF00\">DOB</td>
 <td width=\"40%\" align= center bgcolor=\"FFFF00\">PASSWORD</td>";
 
-while($row=mysql_fetch_assoc($query))
+while($row=mysqli_fetch_assoc($query))
 {
 	$id=$row['CUSTOMER_ID'];
 	$name=$row['FIRST_NAME'];
@@ -127,7 +139,7 @@ if(!($page>=$pages))
 	echo "<a href='cust_update.php?page=$next'>Next</a> ";
 }
 echo "</center>";
-mysql_close();
+mysqli_close($con);
 
 
 

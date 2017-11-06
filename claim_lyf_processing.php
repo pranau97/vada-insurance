@@ -2,15 +2,15 @@
 $id=$_REQUEST['cids'];
 $policy=$_REQUEST['lids'];
 //echo $policy,$id;
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
-//$abcd=mysql_fetch_assoc(mysql_query("SELECT CUSTOMER_ID FROM CLAIM_CUSTOMER_ID WHERE CLAIM_TR_ID=(SELECT CLAIM_TR_ID FROM CLAIM)"));
-//$xyz=mysql_fetch_assoc(mysql_query("SELECT POLICY_ID_LYF FROM CLAIM_POLICY_ID_LYF WHERE CLAIM_TR_ID=(SELECT CLAIM_TR_ID FROM CLAIM)"));
+//$abcd=mysqli_fetch_assoc(mysqli_query($con, "SELECT CUSTOMER_ID FROM CLAIM_CUSTOMER_ID WHERE CLAIM_TR_ID=(SELECT CLAIM_TR_ID FROM CLAIM)"));
+//$xyz=mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_ID_LYF FROM CLAIM_POLICY_ID_LYF WHERE CLAIM_TR_ID=(SELECT CLAIM_TR_ID FROM CLAIM)"));
 
-$a=mysql_fetch_assoc(mysql_query("SELECT CLAIM_TR_ID FROM claim_policy_id_lyf WHERE POLICY_ID_LYF ='$policy' AND CUSTOMER_ID ='$id'"))['CLAIM_TR_ID'];
+$a=mysqli_fetch_assoc(mysqli_query($con, "SELECT CLAIM_TR_ID FROM claim_policy_id_lyf WHERE POLICY_ID_LYF ='$policy' AND CUSTOMER_ID ='$id'"))['CLAIM_TR_ID'];
 
-if(mysql_num_rows(mysql_query("SELECT CLAIM_TR_ID FROM claim_policy_id_lyf WHERE POLICY_ID_LYF ='$policy' AND CUSTOMER_ID ='$id'"))==1)
+if(mysqli_num_rows(mysqli_query($con, "SELECT CLAIM_TR_ID FROM claim_policy_id_lyf WHERE POLICY_ID_LYF ='$policy' AND CUSTOMER_ID ='$id'"))==1)
 {
 		echo "<h1>Customer have already claimed this policy</h1>";
 		header("Refresh:3; url=cust_claim.php");
@@ -96,10 +96,10 @@ $policy=$_REQUEST['lids'];
 //echo $id;
 echo "<br /><br /><br /><center><h2>Your claim is in processing...</h2><br /><a href='emp_users.php'><input type='submit' value='GO TO HOME' /><a/></center>";
 }
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
-$amt = mysql_fetch_assoc(mysql_query("SELECT * FROM policy_lyf WHERE POLICY_ID='$policy'"))['LIABILITY_AMOUNT'];
+$amt = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM policy_lyf WHERE POLICY_ID='$policy'"))['LIABILITY_AMOUNT'];
 
 ?>
 <form ENCTYPE="multipart/form-data" method="post" action="claim_lyf_process.php">

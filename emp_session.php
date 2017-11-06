@@ -12,12 +12,12 @@ else
 	
 	$temp_eid = (int)$_SESSION['eid'];
 	//echo $temp_eid;
-	mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
 	
-	$picname = mysql_query("SELECT FIRST_NAME FROM employee WHERE EMPLOYEE_ID=$temp_eid ");
+	$picname = mysqli_query($con, "SELECT FIRST_NAME FROM employee WHERE EMPLOYEE_ID=$temp_eid ");
 	$first_name = "";
-	while($r = mysql_fetch_assoc($picname)){
+	while($r = mysqli_fetch_assoc($picname)){
 		$first_name = $r['FIRST_NAME'];
 	}
 	//echo $first_name;

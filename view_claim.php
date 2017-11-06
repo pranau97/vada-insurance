@@ -63,19 +63,17 @@ margin-top:300px;
 $a=$_REQUEST['ids'];
 echo "<u>$a</u>";
 /*include("clone_cust_session.php");
-mysql_connect("localhost","root","") or die("Problem with connection...");
-mysql_select_db("insurance");
 $pid="";
-$pid=mysql_fetch_assoc(mysql_query("SELECT POLICY_ID from lyf_insurance where CUSTOMER_ID=$temp_cid"))['POLICY_ID'];;
+$pid=mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_ID from lyf_insurance where CUSTOMER_ID=$temp_cid"))['POLICY_ID'];;
 echo $pid;
-mysql_close();*/
+mysqli_close($con);*/
 ?> </h3>
 
 
 <?php
 include("clone_cust_session.php");
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
 
 echo "<table width=\"40%\" align=center border=2>";
@@ -84,54 +82,54 @@ echo "<tr><th width=\"20%\" align= center \">PREMIUM TRANSACTION ID</th>
 <th width=\"20%\" align= center \">PAYMENT DATE</th>
 <th width=\"20%\" align= center \">PAID ON TIME</th></tr>";
 
-$pname = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM POLICY_LYF WHERE POLICY_ID='$a'"))['POLICY_NAME'];
+$pname = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM POLICY_LYF WHERE POLICY_ID='$a'"))['POLICY_NAME'];
 echo $pname;
-//$pname1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM POLICY WHERE POLICY_ID='$a'"))['POLICY_NAME'];
+//$pname1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM POLICY WHERE POLICY_ID='$a'"))['POLICY_NAME'];
 //echo $pname1;
-$query1 = mysql_query("SELECT PREMIUM_TR_ID FROM PREMIUM_TR_POLICY_LYF WHERE POLICY_LYF_ID='$a' AND POLICY_NAME='$pname'");
-//$query2 = mysql_query("SELECT PREMIUM_TR_ID FROM PREMIUM_TR_POLICY WHERE POLICY_ID='$a' AND POLICY_NAME='$pname1'");
-$query3 = mysql_fetch_assoc(mysql_query("SELECT CLAIM_TR_ID FROM CLAIM_POLICY_ID_LYF WHERE POLICY_ID_LYF='$a' AND POLICY_NAME='$pname' AND CUSTOMER_ID=$temp_cid"))['CLAIM_TR_ID'];
-$query4 = mysql_fetch_assoc(mysql_query("SELECT AMOUNT_OF_CLAIM FROM CLAIM WHERE CLAIM_TR_ID=$query3"))['AMOUNT_OF_CLAIM'];
+$query1 = mysqli_query($con, "SELECT PREMIUM_TR_ID FROM PREMIUM_TR_POLICY_LYF WHERE POLICY_LYF_ID='$a' AND POLICY_NAME='$pname'");
+//$query2 = mysqli_query($con, "SELECT PREMIUM_TR_ID FROM PREMIUM_TR_POLICY WHERE POLICY_ID='$a' AND POLICY_NAME='$pname1'");
+$query3 = mysqli_fetch_assoc(mysqli_query($con, "SELECT CLAIM_TR_ID FROM CLAIM_POLICY_ID_LYF WHERE POLICY_ID_LYF='$a' AND POLICY_NAME='$pname' AND CUSTOMER_ID=$temp_cid"))['CLAIM_TR_ID'];
+$query4 = mysqli_fetch_assoc(mysqli_query($con, "SELECT AMOUNT_OF_CLAIM FROM CLAIM WHERE CLAIM_TR_ID=$query3"))['AMOUNT_OF_CLAIM'];
 
 
 echo "<h2><center> Claim Transaction ID: $query3 </center></h2>";
 echo "<h3><center> Claim Amount: $query4 </center></h3>";
 
-while($row1=mysql_fetch_assoc($query1))
+while($row1=mysqli_fetch_assoc($query1))
 {
 $tr=$row1['PREMIUM_TR_ID'];
 $b=$_REQUEST['query4_1s'];
 
-$query1_1 = mysql_fetch_assoc(mysql_query("SELECT PREMIUM FROM POLICY_LYF WHERE POLICY_ID='$a' AND POLICY_NAME='$b'"))['PREMIUM'];
-$query1_2 = mysql_fetch_assoc(mysql_query("SELECT PAYMENT_DATE FROM PREMIUM WHERE PREMIUM_TR_ID=$tr"))['PAYMENT_DATE'];
-$query1_3 = mysql_fetch_assoc(mysql_query("SELECT PAID_ON_TIME FROM PREMIUM_PAID WHERE PREMIUM_TR_ID=$tr"))['PAID_ON_TIME'];
+$query1_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PREMIUM FROM POLICY_LYF WHERE POLICY_ID='$a' AND POLICY_NAME='$b'"))['PREMIUM'];
+$query1_2 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PAYMENT_DATE FROM PREMIUM WHERE PREMIUM_TR_ID=$tr"))['PAYMENT_DATE'];
+$query1_3 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PAID_ON_TIME FROM PREMIUM_PAID WHERE PREMIUM_TR_ID=$tr"))['PAID_ON_TIME'];
 
 echo "<tr><td>$tr</td><td>$query1_1</td><td>$query1_2</td><td>$query1_3</td></tr>";
 }
 //$b=$_REQUEST['query2_1s'];
-/*while($row2=mysql_fetch_assoc($query2))
+/*while($row2=mysqli_fetch_assoc($query2))
 {
 
 $tr=$row2['PREMIUM_TR_ID'];
 $b=$_REQUEST['query5_1s'];
-$query2_1 = mysql_fetch_assoc(mysql_query("SELECT PREMIUM FROM POLICY WHERE POLICY_ID='$a' AND POLICY_NAME='$b'"))['PREMIUM'];
-$query2_2 = mysql_fetch_assoc(mysql_query("SELECT PAYMENT_DATE FROM PREMIUM WHERE PREMIUM_TR_ID=$tr"))['PAYMENT_DATE'];
-$query2_3 = mysql_fetch_assoc(mysql_query("SELECT PAID_ON_TIME FROM PREMIUM_PAID WHERE PREMIUM_TR_ID=$tr"))['PAID_ON_TIME'];
+$query2_1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PREMIUM FROM POLICY WHERE POLICY_ID='$a' AND POLICY_NAME='$b'"))['PREMIUM'];
+$query2_2 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PAYMENT_DATE FROM PREMIUM WHERE PREMIUM_TR_ID=$tr"))['PAYMENT_DATE'];
+$query2_3 = mysqli_fetch_assoc(mysqli_query($con, "SELECT PAID_ON_TIME FROM PREMIUM_PAID WHERE PREMIUM_TR_ID=$tr"))['PAID_ON_TIME'];
 
 echo "<tr><td>$tr</td><td>$query2_1</td><td>$query2_2</td><td>$query2_3</td></tr>";
 }*/
 
 
-/*while($row=mysql_fetch_assoc($query))
+/*while($row=mysqli_fetch_assoc($query))
 {
 	$id=$row['PREMIUM_TR_ID'];
-	//$query1 = mysql_fetch_assoc(mysql_query("SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
+	//$query1 = mysqli_fetch_assoc(mysqli_query($con, "SELECT POLICY_NAME FROM policy_lyf WHERE POLICY_ID='$id'"))['POLICY_NAME'];
 
 	echo "<tr><td align=center>$id</td></tr>";
 	//$name=$row['POLICY_NAME'];
 }*/
 /*$premium = "";
-while($row=mysql_fetch_assoc($query))
+while($row=mysqli_fetch_assoc($query))
 {
 	$premium=$row['PREMIUM'];
 	//echo $premium;

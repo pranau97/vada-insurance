@@ -31,11 +31,11 @@ $bankname = $_POST['bankname'];
 $accountnum = $_POST['accountnum'];
 
 $f=0;
-mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-mysql_select_db("data") or die(mysql_error());
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+mysqli_select_db($con,$db) or die(mysqli_error($con));
 
-$query = mysql_query("SELECT * FROM customer_account");
-while($row=mysql_fetch_assoc($query))
+$query = mysqli_query($con, "SELECT * FROM customer_account");
+while($row=mysqli_fetch_assoc($query))
 {
 	$acc_num=$row['ACCOUNT_NUMBER'];
 	if($accountnum==$acc_num)
@@ -58,13 +58,13 @@ if (preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i
 
 			if ($password == $cpassword) {
 
-				mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-				mysql_select_db("data") or die(mysql_error());
+				$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+				mysqli_select_db($con,$db) or die(mysqli_error($con));
 
-            $username = mysql_query("SELECT phone_number FROM customer WHERE phone_number=$phone");
-            $count = mysql_num_rows($username);
-            $remail = mysql_query("SELECT email_id FROM customer WHERE email_id='$email'");
-            $checkemail = mysql_num_rows($remail);
+            $username = mysqli_query($con, "SELECT phone_number FROM customer WHERE phone_number=$phone");
+            $count = mysqli_num_rows($username);
+            $remail = mysqli_query($con, "SELECT email_id FROM customer WHERE email_id='$email'");
+            $checkemail = mysqli_num_rows($remail);
 
             if ($checkemail != 0) {
 
@@ -86,15 +86,15 @@ if (preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i
 						move_uploaded_file($temp, "custprofiles/$name/images/$mypic");
 						echo "This will be you profile picture!<p><img border='1' width='50' height='50' src='custprofiles/$name/images/$mypic'><p>";
 						$passwordmd5 = md5($password);
-						mysql_query("INSERT INTO customer(first_name,last_name,house_number,street,phone_number,sex,email_id,dob,password) VALUES('$name','$last','$house','$street',$phone,'$sex','$email','$dob','$passwordmd5')");
-						mysql_query("INSERT INTO pin_city(pincode,city) VALUES('$pincode','$city')");
-						mysql_query("INSERT INTO pin_state(pincode,state) VALUES('$pincode','$state')");
-						mysql_query("INSERT INTO customer_pin(pincode) VALUES('$pincode')");
-						mysql_query("INSERT INTO nominee(name,phone_number,dob,sex,relation) VALUES('$nomi_name',$nphone,'$ndob','$nsex','$nrelation')");
-						mysql_query("INSERT INTO bank_details(bank_name,account_number) VALUES('$bankname','$accountnum')");
-						mysql_query("INSERT INTO customer_account(account_number) VALUES('$accountnum')");
+						mysqli_query($con, "INSERT INTO customer(first_name,last_name,house_number,street,phone_number,sex,email_id,dob,password) VALUES('$name','$last','$house','$street',$phone,'$sex','$email','$dob','$passwordmd5')");
+						mysqli_query($con, "INSERT INTO pin_city(pincode,city) VALUES('$pincode','$city')");
+						mysqli_query($con, "INSERT INTO pin_state(pincode,state) VALUES('$pincode','$state')");
+						mysqli_query($con, "INSERT INTO customer_pin(pincode) VALUES('$pincode')");
+						mysqli_query($con, "INSERT INTO nominee(name,phone_number,dob,sex,relation) VALUES('$nomi_name',$nphone,'$ndob','$nsex','$nrelation')");
+						mysqli_query($con, "INSERT INTO bank_details(bank_name,account_number) VALUES('$bankname','$accountnum')");
+						mysqli_query($con, "INSERT INTO customer_account(account_number) VALUES('$accountnum')");
 						
-						mysql_close();
+						mysqli_close($con);
 						echo "You have succefully registered!<a href='cust_home.php'>Login now!</a>";
 					
 					} else {

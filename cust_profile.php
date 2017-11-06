@@ -88,9 +88,9 @@ height:100px;
 <div id="left">
 <h4><strong><u>Personal Details</u></strong></h4>
 <table>
-<tr><td>Name: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT FIRST_NAME FROM customer WHERE CUSTOMER_ID=$temp_cid "))['FIRST_NAME'];
+<tr><td>Name: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT FIRST_NAME FROM customer WHERE CUSTOMER_ID=$temp_cid "))['FIRST_NAME'];
 
 	?></td>
 	<td rowspan="5"> <div id="photo"><?php $open = opendir($dir);
@@ -104,43 +104,43 @@ height:100px;
 	?></div>
 </tr>
 <tr><td>Customer ID: </td><td><?php echo $temp_cid; ?></td></tr>
-<tr><td>Sex: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT SEX FROM customer WHERE CUSTOMER_ID=$temp_cid "))['SEX'];
+<tr><td>Sex: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT SEX FROM customer WHERE CUSTOMER_ID=$temp_cid "))['SEX'];
 
 	?></td></tr>
-<tr><td>DOB: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT DOB FROM customer WHERE CUSTOMER_ID=$temp_cid "))['DOB'];
+<tr><td>DOB: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT DOB FROM customer WHERE CUSTOMER_ID=$temp_cid "))['DOB'];
 
 	?></td></tr>
-<tr><td>Phone: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT PHONE_NUMBER FROM customer WHERE CUSTOMER_ID=$temp_cid "))['PHONE_NUMBER'];
+<tr><td>Phone: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT PHONE_NUMBER FROM customer WHERE CUSTOMER_ID=$temp_cid "))['PHONE_NUMBER'];
 
 	?></td></tr>
 </table>
 
 <h5><strong><u>Address</u></strong></h5>
 <table>
-<tr><td>House number: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT HOUSE_NUMBER FROM customer WHERE CUSTOMER_ID=$temp_cid "))['HOUSE_NUMBER'];
+<tr><td>House number: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT HOUSE_NUMBER FROM customer WHERE CUSTOMER_ID=$temp_cid "))['HOUSE_NUMBER'];
 
 	?></td></tr>
-<tr><td>Street: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT STREET FROM customer WHERE CUSTOMER_ID=$temp_cid "))['STREET'];
+<tr><td>Street: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT STREET FROM customer WHERE CUSTOMER_ID=$temp_cid "))['STREET'];
 
 	?></td></tr>
-<tr><td>City: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT CITY FROM pin_city WHERE PINCODE=$temp_pin "))['CITY'];
+<tr><td>City: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT CITY FROM pin_city WHERE PINCODE=$temp_pin "))['CITY'];
 
 	?></td></tr>
-<tr><td>State: </td><td><?php mysql_connect("localhost:3306","root", "mysql") or die("Problem with connection...");
-	mysql_select_db("data") or die(mysql_error());
-	echo mysql_fetch_assoc(mysql_query("SELECT STATE FROM pin_state WHERE PINCODE=$temp_pin "))['STATE'];
+<tr><td>State: </td><td><?php $url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT STATE FROM pin_state WHERE PINCODE=$temp_pin "))['STATE'];
 
 	?></td></tr>
 <tr><td>PIN code: </td><td><?php echo $temp_pin; ?></td></tr>
