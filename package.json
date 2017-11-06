@@ -6,6 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pranau97/vada-insurance.git",
+    "name": "vada-insurance",
+    "private": true,
+    "version": "0.3.0"
+  },
   "author": "Pranau Kumar",
   "license": "ISC",
   "keywords": [
@@ -17,6 +24,7 @@
     "MySQL"
   ],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
