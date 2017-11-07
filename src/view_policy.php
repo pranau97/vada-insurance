@@ -44,22 +44,14 @@ margin-top:450px;
 </head>
 
 <body>
-<div id="logo1">
-<table id="logo2" >
-  <tr>
-    <td  id="logo3">&nbsp;
-    	<img src="logo1.PNG" height="100" width="145">
-    </td>
-    <td id="logo4">
-    	<br>
-    	<font size=6.5 color=#FFFFFF face="Times New Roman">
-    	<b>Welcome</b><br>VADA Insurance
-     	</font>
-    </td>
-<td id="logo5"></td> 
- </tr>
-</table>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container-fluid">
+  <div class="navbar-header">
+	<a class="navbar-brand" href="#">Welcome</a>
+  </div>
+</nav>
+
+<div style="height: 50px"></div>
 <h3>POLICY ID: 
 <?php 
 $a=$_REQUEST['ids'];

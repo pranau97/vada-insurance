@@ -117,10 +117,10 @@
 		<a href="emp_manage_home.php">Employees</a>
 	  </li>
 	  <li>
-		<a href="branch_details.html">Branches</a>
+		<a href="branch_details.php">Branches</a>
 	  </li>
 	  <li>
-		<a href="contact_us.html">Contact Us</a>
+		<a href="contact_us.php">Contact Us</a>
 	  </li>
 	</ul>
   </div>
