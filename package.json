@@ -4,7 +4,8 @@
   "description": "Internet and Web Programming Project - Insurance Management System",
   "main": "main.php",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir out --copy-files"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,11 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "popper.js": "^1.12.6"
   }
 }

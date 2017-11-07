@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+<head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>Customer Login</title>
 <style type="text/css">

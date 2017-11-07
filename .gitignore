@@ -6,3 +6,6 @@
 
 #Heroku Vendor
 /vendor
+
+#Out Files
+/out
