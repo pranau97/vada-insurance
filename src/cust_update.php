@@ -2,7 +2,7 @@
 
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Customer Update</title>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 body{
 background-color:#FFFFCC;}
 
@@ -149,6 +149,6 @@ mysqli_close($con);
 ?>
 <table>
 </table>
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php      include('footer.php');     ?>
 </body>
 </html>

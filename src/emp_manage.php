@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Employee</title>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 
 body{
 background-color:#FFFFCC;}
@@ -260,7 +260,8 @@ echo $date;
 
 	?></td></tr>
 <tr><td> Branch:</td><td><?php 	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));    $server = $url["host"];   $username = $url["user"];   $password1 = $url["pass"];   $db = substr($url["path"],1);   $con= mysqli_connect($server, $username, $password1) or die("Problem with connection...");
-	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid) "))['BRANCH_ID'];
+	mysqli_select_db($con,$db) or die(mysqli_error($con));
+	echo mysqli_fetch_assoc(mysqli_query($con, "SELECT BRANCH_ID FROM has WHERE D_ID=(SELECT D_ID FROM works_for where EMPLOYEE_ID=$temp_eid)"))['BRANCH_ID'];
 	
 	?></td></tr>
 <tr><td> Department:</td><td><?php 	mysqli_select_db($con,$db) or die(mysqli_error($con));
@@ -283,6 +284,6 @@ echo $date;
 
 </div>
 
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php      include('footer.php');     ?>
 </body>
 </html>

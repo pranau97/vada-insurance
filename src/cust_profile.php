@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Profile</title>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 
 body{
 background-color:#FFFFCC;

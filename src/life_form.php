@@ -1,7 +1,7 @@
 <html>
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 
 body{
 background-color:#FFFFCC;
@@ -78,6 +78,6 @@ width:33.33%;
 <p>
 <input type="submit" value="register" /><br />
 </form>
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php      include('footer.php');     ?>
 </body>
 </html>

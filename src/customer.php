@@ -1,10 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Customer</title>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 body{
 background-color:#FFFFCC;}
 
@@ -23,7 +20,7 @@ h4{
 font-size:25px;
 }
 
-#header
+/* #header
 {
 
 font-size: 25px;
@@ -56,7 +53,7 @@ width:150px;
 height: 170px;
 }
 
-#header a:link{color:black;}
+#header a:link{color:black;} */
 
 #logout{
 margin-top:100px;
@@ -141,7 +138,9 @@ hr{
 
 </style>
 </head>
-
+<script>
+	import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+</script>
 
 <body>
 
@@ -179,7 +178,7 @@ echo "Today, " .$date."<br />";
 ?>
 <hr>
 
-<div id="header">
+<div id="navbar-header">
 <table>
 <tr>
 <td class="i"><a href="cust_profile.php" target="_blank"><img src="profile.svg"></img></a></td>
@@ -195,6 +194,8 @@ echo "Today, " .$date."<br />";
 </table>
 </div>
 
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php
+	include("footer.php");
+?>
 </body>
 </html>

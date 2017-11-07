@@ -9,3 +9,6 @@
 
 #Out Files
 /out
+
+#Apache config
+/src/.htaccess

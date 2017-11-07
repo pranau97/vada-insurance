@@ -22,7 +22,7 @@ if(mysqli_num_rows(mysqli_query($con, "SELECT CLAIM_TR_ID FROM claim_policy_id_l
 
 <html>
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 
 
 body{
@@ -117,7 +117,7 @@ $amt = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM policy_lyf WHERE POL
 
 </div>
 </form>
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php      include('footer.php');     ?>
 </body>
 
 

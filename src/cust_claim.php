@@ -1,7 +1,7 @@
 <html>
 <head> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Customer Claim</title>
-<style type="text/css">
+<style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 body{
 background-color:#FFFFCC;}
 
@@ -113,6 +113,6 @@ $pcid</td><td align=center >$pid</td><td align=center ><a href='claim_prop_proce
 }
 ?>
 </table>
-<div id="foot">&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php      include('footer.php');     ?>
 </body>
 </html>
