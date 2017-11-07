@@ -133,7 +133,7 @@
       <form class="form-signin" method="post" action="cust_login.php">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="cid" class="sr-only">Customer ID</label>
-		<input type="text" id="cid" class="form-control" placeholder="Email address" required autofocus name="cid">
+		<input type="text" id="cid" class="form-control" placeholder="ID" required autofocus name="cid">
 		<br>
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password" required name="password">

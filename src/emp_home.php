@@ -133,7 +133,7 @@
       <form class="form-signin" method="post" action="emp_login.php">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="eid" class="sr-only">Manager ID</label>
-		<input type="text" id="eid" class="form-control" placeholder="Email address" required autofocus name="eid">
+		<input type="text" id="eid" class="form-control" placeholder="ID" required autofocus name="eid">
 		<br>
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password" required name="password">
