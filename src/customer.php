@@ -7,9 +7,7 @@ background-color:#FFFFCC;}
 
 h3{
 
-color:white;
 padding:3px 1px 3px 6px;
-background-color: #606060; 
 width:250px;
 margin-left: 10px;
 margin-top:10px;
@@ -19,41 +17,6 @@ margin-top:10px;
 h4{
 font-size:25px;
 }
-
-/* #header
-{
-
-font-size: 25px;
-}
-
-#header table{
-text-align:center;
-font-size: 10px;
-width:80%;
-margin:auto;
-margin-top:30px;
-border:5px solid;
-}
-
-#header td.i{
-font-size:20px;
-padding: 10px 100px 10px 100px;
-spacing: 30px;
-
-}
-
-#header td.j{
-font-size:20px;
-padding: 5px;
-spacing: 30px;
-}
-
-#header img{
-width:150px;
-height: 170px;
-}
-
-#header a:link{color:black;} */
 
 #logout{
 margin-top:100px;
@@ -153,10 +116,6 @@ hr{
 
 <div style="height: 50px"></div>
 
-<?php $date = date('F d, Y');
-echo "Today, " .$date."<br />"; 
-?>
-
 <h3>Welcome <?php echo "$first_name  <br />Customer ID	-	$temp_cid"?> </h3>  
 <?php $open = opendir($dir);
 	while(($file = readdir($open)) != FALSE)
@@ -173,9 +132,9 @@ echo "Today, " .$date."<br />";
 <div id="navbar-header">
 <table>
 <tr>
-<td class="i"><a href="cust_profile.php" target="_blank"><img src="profile.svg"></img></a></td>
-<td class="i"><a href="my_policy.php"><img src="my_policy.png"></img></a></td>
-<td class="i"><a href="policy.html" target="_blank"><img src="our_policy.jpg"></img></a></td>
+<td class="i"><a href="cust_profile.php" target="_blank"><img src="profile.svg" height="150" width="150"></img></a></td>
+<td class="i"><a href="my_policy.php"><img src="my_policy.png" height="150" width="150"></img></a></td>
+<td class="i"><a href="policy.html" target="_blank"><img src="our_policy.jpg" height="150" width="150"></img></a></td>
 </tr>
 
 <tr>
