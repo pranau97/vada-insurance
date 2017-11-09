@@ -12,3 +12,6 @@
 
 #Apache config
 /src/.htaccess
+
+#NPM Debug
+npm-debug.log

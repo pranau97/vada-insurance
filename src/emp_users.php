@@ -10,7 +10,7 @@ if(!isset($_SESSION['eid']))
 else
 {
 	include("emp_session.php");
-	//include("emp_links.php");
+	//include("emp_links.php")
 }
 
 ?>

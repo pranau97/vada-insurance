@@ -5,7 +5,7 @@
   "main": "main.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel src --out-dir out --copy-files"
+    "build": "npm babel src --out-dir out --copy-files"
   },
   "repository": {
     "type": "git",
