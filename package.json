@@ -1,11 +1,11 @@
 {
   "name": "iwp-project",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "description": "Internet and Web Programming Project - Insurance Management System",
   "main": "main.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm babel src --out-dir out --copy-files"
+    "build": "./node_modules/.bin/babel src --out-dir out --copy-files"
   },
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
     "private": true,
     "version": "0.3.0"
   },
-  "author": "Pranau Kumar",
-  "license": "ISC",
+  "author": "Pranau Kumar and Rahul Prasham Sivalingam",
+  "license": "cc-by-4.0",
   "keywords": [
     "IWP",
     "PHP",
