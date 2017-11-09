@@ -3,6 +3,7 @@
 
 #Node Modules
 /node_modules
+<<<<<<< HEAD
 
 #Heroku Vendor
 /vendor
@@ -15,3 +16,5 @@
 
 #NPM Debug
 npm-debug.log
+=======
+>>>>>>> 56c5abb110ef92a02328286901eefdbad062dc48
