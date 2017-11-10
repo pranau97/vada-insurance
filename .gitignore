@@ -10,8 +10,5 @@
 #Out Files
 /out
 
-#Apache config
-/src/.htaccess
-
 #NPM Debug
 npm-debug.log
