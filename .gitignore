@@ -12,3 +12,6 @@
 
 #NPM Debug
 npm-debug.log
+
+#Composer
+composer.lock
