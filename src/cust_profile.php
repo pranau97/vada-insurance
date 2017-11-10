@@ -6,9 +6,6 @@
 <title>Profile</title>
 <style>     *{       font-family: 'Josefin Sans', sans-serif;     }
 
-body{
-background-color:#FFFFCC;
-}
 
 #left{
 border: 1px solid black;
@@ -140,6 +137,6 @@ height:100px;
 </table>
 </div>
 
-<div id="foot"><br />&copy; 2017 VADA Insurance. All rights reserved.</div>
+<?php include("footer.php") ?>
 </body>
 </html>
