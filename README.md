@@ -1,6 +1,6 @@
 # Insurance Management System
 
-This system is part of a project submitted for the course Internet and Web Programming. It is an insurance management system written mostly in PHP and connects to a MySQL database. This document details the setup process for this system.
+This system is part of a project submitted for the course, "Internet and Web Programming". It is an insurance management system written mostly in PHP and connects to a MySQL database. This document details the setup process for this system.
 
 Try the live site [here](https://vada-insurance.herokuapp.com/).
 
