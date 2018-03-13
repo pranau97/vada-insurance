@@ -54,7 +54,7 @@ Execute the `queries.sql` file in the directory root using the MySQL command lin
 
 * Finally to build and transpile all the JavaScript code, run `npm run build` on the command prompt. Once this is finished, you will see a new folder called `out` that has been created with all the files ready to be executed.
 
-### Final steps
+### Final Steps
 
 * Copy the contents of the `out` folder to the `www` folder of Apache or make a symlink to it if you so prefer.
 
